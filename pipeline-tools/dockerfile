@@ -1,0 +1,23 @@
+FROM node
+
+MAINTAINER Jonathan Newell version: 0.1
+
+# Get Https Transport for apt-get
+RUN apt-get update
+RUN apt-get install apt-transport-https
+
+# Add CF repo
+RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
+RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+
+# Install CF CLI
+RUN apt-get update
+RUN apt-get install cf-cli
+
+# Install j-query
+RUN apt-get install jq
+
+# Install  Yaml2Json
+RUN npm install -g yaml2json
+
+CMD ["/bin/sh"]
