@@ -20,4 +20,4 @@ RUN apt-get install jq
 # Install  Yaml2Json
 RUN npm install -g yaml2json
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
