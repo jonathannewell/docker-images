@@ -18,6 +18,6 @@ RUN apt-get install cf-cli
 RUN apt-get install jq
 
 # Install  Yaml2Json
-RUN npm install -g yaml2json
+RUN npm install -g yamlxjson
 
 CMD ["/bin/bash"]
