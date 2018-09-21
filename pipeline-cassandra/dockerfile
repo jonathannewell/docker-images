@@ -14,8 +14,8 @@ RUN apt-get install -y maven
 RUN touch /var/log/datastax.log
 RUN chmod 777 /var/log/datastax.log
 
-COPY jon-entrypoint.sh /jon-entrypoint.sh
+COPY startup-cassandra-entrypoint.sh /startup-cassandra-entrypoint.sh
 
-ENTRYPOINT ["/jon-entrypoint.sh"]
+ENTRYPOINT ["/startup-cassandra-entrypoint.sh"]
 
 CMD ["/bin/bash"]

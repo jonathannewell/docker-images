@@ -27,3 +27,6 @@ done
 
 printf "\nCassandra is now up...Took: %d seconds!\n" $((counter/2))
 exec "$@"
+
+#Shutdown cassandra
+su dse -p -c 'export PATH=$PATH:$DSE_HOME/bin; dse cassandra-stop'
