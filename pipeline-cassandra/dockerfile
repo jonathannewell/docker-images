@@ -14,9 +14,8 @@ RUN apt-get install -y maven
 RUN touch /var/log/datastax.log
 RUN chmod 777 /var/log/datastax.log
 
-USER dse
-
 COPY jon-entrypoint.sh /jon-entrypoint.sh
 
 ENTRYPOINT ["/jon-entrypoint.sh"]
+
 CMD ["/bin/bash"]
