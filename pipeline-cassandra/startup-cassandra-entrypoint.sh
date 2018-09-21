@@ -26,7 +26,15 @@ while ! nc -z localhost 9042; do
 done
 
 printf "\nCassandra is now up...Took: %d seconds!\n" $((counter/2))
-exec "$@"
 
+if [ -z "$PIPELINE_MODE" ]; then
+  eval "$@"
+else
+  exec "$@"
+fi
+
+printf "\nShutting Down Cassandra...."
 #Shutdown cassandra
 su dse -p -c 'export PATH=$PATH:$DSE_HOME/bin; dse cassandra-stop'
+
+printf "\nShutdown Complete!"
