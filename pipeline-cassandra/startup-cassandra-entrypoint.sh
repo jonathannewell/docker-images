@@ -28,11 +28,10 @@ done
 printf "\nCassandra is now up...Took: %d seconds!\n" $((counter/2))
 
 if [ -z "$PIPELINE_MODE" ]; then
-  eval "$@"
-else
   exec "$@"
+else
+  eval "$@"
 fi
-
 printf "\nShutting Down Cassandra...."
 #Shutdown cassandra
 su dse -p -c 'export PATH=$PATH:$DSE_HOME/bin; dse cassandra-stop'
