@@ -1,0 +1,35 @@
+FROM dockercore/golang-cross:1.11.1
+
+MAINTAINER Jonathan Newell version: 0.1
+
+# Get Https Transport for apt-get
+RUN apt-get update
+RUN apt-get install -y apt-transport-https
+
+# Add CF repo
+RUN wget -q -O - https://packages.cloudfoundry.org/debian/cli.cloudfoundry.org.key | apt-key add -
+RUN echo "deb https://packages.cloudfoundry.org/debian stable main" | tee /etc/apt/sources.list.d/cloudfoundry-cli.list
+
+# Install CF CLI
+RUN apt-get update
+RUN apt-get install -y cf-cli
+
+# Install j-query
+RUN apt-get install -y jq
+
+RUN apt-get install -y libpcre3-dev
+
+#Install node with NPM and yarn
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+RUN apt-get install -y nodejs
+
+# Install  Yaml2Json
+RUN npm install -g yamlxjson
+
+# GoDep dependency management
+RUN go get -u github.com/golang/dep/cmd/dep
+
+# Go-Bindata
+RUN go get -u github.com/go-bindata/go-bindata/...
+
+CMD ["/bin/bash"]
