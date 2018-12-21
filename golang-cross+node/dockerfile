@@ -17,11 +17,27 @@ RUN apt-get install -y cf-cli
 # Install j-query
 RUN apt-get install -y jq
 
+# Install Libs
 RUN apt-get install -y libpcre3-dev
+RUN apt-get install -y libfontconfig
+
+# Install BZIP2 for use by npm!
+RUN apt-get install -y bzip2
 
 #Install node with NPM and yarn
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
+
+RUN npm init -y
+
+# Install phantomjs
+RUN npm install phantomjs-prebuilt
+# Create a symbolic link to phantomjs in /usr/bin so it is on the path
+RUN ln -s /go/node_modules/phantomjs-prebuilt/lib/phantom/bin/phantomjs /usr/bin
+
+# Install markdown-pdf
+RUN npm install markdown-pdf
+RUN ln -s /go/node_modules/markdown-pdf/bin/markdown-pdf /usr/bin
 
 # Install  Yaml2Json
 RUN npm install -g yamlxjson
