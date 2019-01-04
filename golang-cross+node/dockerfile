@@ -24,6 +24,9 @@ RUN apt-get install -y libfontconfig
 # Install BZIP2 for use by npm!
 RUN apt-get install -y bzip2
 
+# Install Httpie
+RUN apt-get install -y httpie
+
 #Install node with NPM and yarn
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
